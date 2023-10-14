@@ -1,0 +1,18 @@
+@url_api=http://localhost:8080/v1/api
+@url=http://localhost:8080
+
+### Create Short link
+POST {{url_api}}/link/create-short
+Content-Type: application/json
+
+{
+    "link": "https://www.youtube.com/"
+}
+
+### Get all links
+GET {{url_api}}/link
+Content-Type: application/json
+
+### Create redirection route
+GET {{url}}/link/4ix0k0tpjk
+Content-Type: application/json

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+    ports:
+      - $DB_PORT:$MONGODB_DOCKER_PORT
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - shorturl
+
+  app:
+    depends_on:
+      - mongodb
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - $NODE_PORT:$NODE_DOCKER_PORT
+    volumes:
+      - .:/src/app
+    networks:
+      - shorturl
+
+networks:
+  shorturl:
+    driver: bridge
+volumes:
+  dbdata:

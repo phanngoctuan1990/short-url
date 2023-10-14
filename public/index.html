@@ -59,7 +59,6 @@
         }
         .list table {
             width: 100%;
-            text-align: center;
         }
         .list table thead tr {
             background: #555;
@@ -91,6 +90,9 @@
         }
         .show-list-header h2 {
             margin: 0;
+        }
+        .count {
+            text-align: center;
         }
     </style>
 </head>
@@ -140,7 +142,7 @@
                             <tr>
                                 <td>${metadata[i].longurl}</td>
                                 <td>${host}/link/${metadata[i].shorturl}</td>
-                                <td>${metadata[i].count}</td>
+                                <td class="count">${metadata[i].count}</td>
                             </tr>
                         `
                     }
@@ -190,7 +192,7 @@
                             <tr>
                                 <td>${metadata.longurl}</td>
                                 <td>${host}/${metadata.shorturl}</td>
-                                <td>${metadata.count}</td>
+                                <td class="count">${metadata.count}</td>
                             </tr>
                         `
                         document.querySelector('#list_urls tbody').innerHTML += html
